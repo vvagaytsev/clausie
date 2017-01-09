@@ -11,7 +11,7 @@
 
     <groupId>de.mpii.clausie</groupId>
     <artifactId>clausie-custom</artifactId>
-    <version>0.1-RELEASE</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -47,8 +47,9 @@
             <artifactId>stanford-corenlp</artifactId>
             <version>${stanford.corenlp.version}</version>
             <classifier>models-english</classifier>
+            <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/net.sf.jopt-simple/jopt-simple -->
+
         <dependency>
             <groupId>net.sf.jopt-simple</groupId>
             <artifactId>jopt-simple</artifactId>
