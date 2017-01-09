@@ -11,7 +11,7 @@
 
     <groupId>de.mpii.clausie</groupId>
     <artifactId>clausie-custom</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1-RELEASE</version>
     <packaging>jar</packaging>
 
     <properties>
