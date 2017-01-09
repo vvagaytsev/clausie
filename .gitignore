@@ -1,0 +1,55 @@
+#Derived binaries
+target
+[Bb]in
+[Bb]uild
+*.class
+*.[ao]
+*.log
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+*.dynlib
+
+# IDE project files etc
+.classpath
+.project
+.settings
+.idea
+*.iml
+*.ipr
+
+# Various editors tmp files
+# Do not include '.*' here; would disable .gitignore itself
+.#*
+.~*
+*~
+\#*
+~$*
+
+# User local settings
+environment.local.properties
+
+# Temps and old ones and backups
+*.tmp
+*.bac
+*.bak
+*.temp
+
+# Packages #
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.dmg
+*.iso
+
+# OS specifics
+*.DS_Stor*
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db
+/test-output
+
+hs_err_pid*
