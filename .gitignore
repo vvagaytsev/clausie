@@ -53,3 +53,8 @@ ehthumbs.db
 /test-output
 
 hs_err_pid*
+
+# Build
+.gradle
+build/
+out/
