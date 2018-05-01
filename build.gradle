@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'de.mpii.clausie'
-version = '0.2'
+version = '0.1.0'
 
 description = """"""
 
@@ -12,6 +12,44 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.2.0"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+}
+
+apply plugin: "com.jfrog.artifactory-upload"  // plugin to interface with Agolo's Artifactory server
+apply plugin: "io.spring.dependency-management" // plugin to manage transitive dependencies
+
+// artifactory configuration to upload output JAR to Agolo's internal repository
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"
+    publish {
+        repository {
+            repoKey = "${artifactory_publish_repokey}"
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            ivy {
+                mavenCompatible = true
+            }
+        }
+    }
+    resolve {
+        repository {
+            repoKey = "${artifactory_resolve_repokey}"
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
+    }
+}
 
 
 repositories {
