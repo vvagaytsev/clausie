@@ -1,0 +1,68 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'de.mpii.clausie'
+version = '0.1.2'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.2.0"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+}
+
+apply plugin: "com.jfrog.artifactory-upload"  // plugin to interface with Agolo's Artifactory server
+apply plugin: "io.spring.dependency-management" // plugin to manage transitive dependencies
+
+// artifactory configuration to upload output JAR to Agolo's internal repository
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"
+    publish {
+        repository {
+            repoKey = "${artifactory_publish_repokey}"
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            ivy {
+                mavenCompatible = true
+            }
+        }
+    }
+    resolve {
+        repository {
+            repoKey = "${artifactory_resolve_repokey}"
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
+    }
+}
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'edu.stanford.nlp', name: 'stanford-corenlp', version:'3.7.0'
+    compile group: 'net.sf.jopt-simple', name: 'jopt-simple', version:'4.4'
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.22'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.1.8'
+    compile group: 'ch.qos.logback', name: 'logback-core', version:'1.1.8'
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version:'3.0.1'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    compileOnly group: 'edu.stanford.nlp', name: 'stanford-corenlp', version:'3.7.0', classifier:'models-english'
+}
