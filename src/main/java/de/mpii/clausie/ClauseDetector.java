@@ -823,7 +823,7 @@ final class ClauseDetector {
                                          IndexedWord verb,
                                          List<IndexedWord> roots) {
         IndexedWord partmodsub = subject;
-        addNsubjClause(clausIE, roots, clausIE.clauses, partmodsub, verb, false);
+        addNsubjClause(clausIE, roots, clausIE.clauses, partmodsub, verb, true);
     }
 
     /**
